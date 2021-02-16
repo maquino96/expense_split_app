@@ -35,7 +35,7 @@ class ExpensesController < ApplicationController
     def create
         @expense = Expense.create(expense_params)
         if @expense.valid?
-            redirect_to expense_path(@expense)
+            redirect_back fallback_location: events_path
         else
             flash[:errors] = @expense.errors.full_messages
             flash[:attributes] = @expense.attributes

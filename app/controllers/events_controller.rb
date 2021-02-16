@@ -8,7 +8,7 @@ class EventsController < ApplicationController
          @event = Event.find(params[:id])
          @expense = Expense.new 
          @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event).id
-         byebug 
+        #  byebug 
          flash[:attendees] = @event.attendances 
      end
  
