@@ -1,0 +1,11 @@
+<h1> Expense Split App: Create New User</h1>
+
+<%= render "/shared/errors" %>
+
+<%= form_for @user do |f| %>
+    
+    <%= f.label :name, "Please put name here" %>
+    <%= f.text_field :name %>
+    <%= f.submit "Submit" %>
+
+<% end %>
