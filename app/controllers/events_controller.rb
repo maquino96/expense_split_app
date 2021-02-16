@@ -6,6 +6,7 @@ class EventsController < ApplicationController
  
      def show
          @event = Event.find(params[:id])
+         flash[:attendees] = @event.attendances 
      end
  
      def new

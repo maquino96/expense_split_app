@@ -1,6 +1,4 @@
-<h1> Expense Split App </h1> 
-
-<h1> <% @event.name %> </h1> 
+<h1> Expense Split App: <%= @event.name %>  </h1> 
 
 <h2> Attendees: </h2>
 
@@ -24,3 +22,5 @@
             <% end %> 
 
 </ol>
+
+<p><%=link_to('+Add a new expense', new_expense_path)%></p>

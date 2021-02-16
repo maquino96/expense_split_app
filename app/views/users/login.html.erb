@@ -1,0 +1,9 @@
+<h1> Welcome to Expense Split App </h1>
+
+<%= render "/shared/errors" %>
+
+<%= form_tag "/handle_login" do %>
+    <%= label_tag :login_username %>
+    <%= text_field_tag :login_username %>
+    <%= submit_tag "Login" %>
+<% end %>
