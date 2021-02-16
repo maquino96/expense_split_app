@@ -43,7 +43,7 @@
 <ul>
     <% @event.debts.each do |debt| %>
         <li>
-            <%= debt.to_s %> 
+            <%= "#{debt.debtor.name} owes #{debt.creditor.name} #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %> 
         </li>
     <% end %> 
 </ul>

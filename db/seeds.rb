@@ -34,4 +34,30 @@ expense6 = Expense.create(description: 'Pilota', cost: 20000, attendance_id: 5)
 expense6 = Expense.create(description: 'Banger', cost: 15000 , attendance_id: 6)
 expense6 = Expense.create(description: 'Fun', cost: 25000 , attendance_id: 6)
 
-puts '##### SEED COMPELTED #####'
+puts '##### MATT SEED COMPELTED #####'
+
+john = User.create(name: "John")
+paul = User.create(name: "Paul")
+george = User.create(name: "George")
+ringo = User.create(name: "Ringo")
+
+yellowsubmarine = Event.create(name: "Yellow Submarine")
+
+ysjohn = Attendance.create(user: john, event: yellowsubmarine)
+yspaul = Attendance.create(user: paul, event: yellowsubmarine)
+ysgeorge = Attendance.create(user: george, event: yellowsubmarine)
+ysringo = Attendance.create(user: ringo, event: yellowsubmarine)
+
+Expense.create(attendance: ysjohn, description: "a", cost: 90)
+Expense.create(attendance: ysjohn, description: "b", cost: 50)
+Expense.create(attendance: ysjohn, description: "c", cost: 25)
+Expense.create(attendance: yspaul, description: "d", cost: 70)
+Expense.create(attendance: yspaul, description: "e", cost: 15)
+Expense.create(attendance: ysgeorge, description: "f", cost: 11)
+Expense.create(attendance: ysgeorge, description: "g", cost: 4)
+Expense.create(attendance: ysgeorge, description: "h", cost: 5)
+Expense.create(attendance: ysgeorge, description: "i", cost: 13)
+
+puts '##### ZAK SEED COMPELTED #####'
+
+puts '##### ALL SEED COMPELTED #####'

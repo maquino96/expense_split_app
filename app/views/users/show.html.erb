@@ -12,5 +12,21 @@
     <% end %>
 </ol>
 
-
 <h3><%= link_to('Create New Event', new_event_path) %> </h3>
+
+<h2> Here are your outstanding debts! </h2>
+
+<ul> 
+    <% @user.what_do_i_owe.each do |debt| %>
+        <li>
+            <%= "You owe #{debt.creditor.name} #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %>
+        </li>
+    <% end %>
+</ul>
+<ul> 
+    <% @user.what_is_owed_to_me.each do |debt| %>
+        <li>
+            <%= "#{debt.debtor.name} owes you #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %>
+        </li>
+    <% end %>
+</ul>
