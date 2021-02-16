@@ -1,0 +1,16 @@
+<h1> Expense Split App</h1>
+
+<h2> Welcome <%=@user.name%> <h2>
+
+<h2> Please see the below for your previously attended events: </h2>
+
+<ol> 
+    <%@user.events.each do |event| %>
+        <li>
+            <%=link_to(event.name,event_path(event))%>
+        </li>
+    <% end %>
+</ol>
+
+
+<h3><%= link_to('Create New Event', new_event_path) %> </h3>

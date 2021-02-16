@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  cost: 1
+  Attendance_belongs_to: MyString
+
+two:
+  description: MyString
+  cost: 1
+  Attendance_belongs_to: MyString

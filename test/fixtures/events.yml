@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  complete: false
+  name: MyString
+  date: 2021-02-15
+
+two:
+  complete: false
+  name: MyString
+  date: 2021-02-15

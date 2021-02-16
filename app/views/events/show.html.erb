@@ -1,0 +1,26 @@
+<h1> Expense Split App </h1> 
+
+<h1> <% @event.name %> </h1> 
+
+<h2> Attendees: </h2>
+
+<ul>
+    <% @event.attendee_user_insts.each do |user| %>
+        <li>
+        <!-- ## Can set an if statement here so that only a session / cookie with the corresponding user can be linked to, for now all are link_to-->
+            <%= link_to(user.name, user_path(user))%>
+        </li>
+    <% end %> 
+
+</ul>
+
+<h2> Expenses: </h2>
+
+<ol>
+        <% @event.expenses.each do |expense| %>
+            <li>
+                <%= "#{expense.description} -- Cost: $#{expense.cost}."%> 
+            </li>
+            <% end %> 
+
+</ol>
