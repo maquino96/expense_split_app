@@ -60,4 +60,10 @@ Expense.create(attendance: ysgeorge, description: "i", cost: 13)
 
 puts '##### ZAK SEED COMPELTED #####'
 
+universe = Event.create(name: "The Universal Event")
+User.each do |user|
+    Attendance.create(user: user, event: universe)
+end
+
+
 puts '##### ALL SEED COMPELTED #####'

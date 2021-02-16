@@ -19,14 +19,14 @@
 <ul> 
     <% @user.what_do_i_owe.each do |debt| %>
         <li>
-            <%= "You owe #{debt.creditor.name} #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %>
+            <%= "You owe #{debt.creditor.name} #{number_to_currency(debt.amount,{precision: 2,unit: '$'})} from #{debt.event.name}." %>
         </li>
     <% end %>
 </ul>
 <ul> 
     <% @user.what_is_owed_to_me.each do |debt| %>
         <li>
-            <%= "#{debt.debtor.name} owes you #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %>
+            <%= "#{debt.debtor.name} owes you #{number_to_currency(debt.amount,{precision: 2,unit: '$'})} from #{debt.event.name}." %>
         </li>
     <% end %>
 </ul>
