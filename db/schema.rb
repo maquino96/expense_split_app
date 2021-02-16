@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_232229) do
   create_table "debts", force: :cascade do |t|
     t.integer "debtor_id"
     t.integer "creditor_id"
-    t.integer "amount"
+    t.float "amount"
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_232229) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.boolean "complete"
+    t.boolean "complete", default: false
     t.string "name"
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_232229) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "description"
-    t.integer "cost"
+    t.float "cost"
     t.bigint "attendance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

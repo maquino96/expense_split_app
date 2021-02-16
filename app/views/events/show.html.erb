@@ -17,11 +17,15 @@
 <ol>
         <% @event.expenses.each do |expense| %>
             <li>
-                <%= "#{expense.description} -- Cost: $#{expense.cost}."%> 
+                <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: $#{expense.cost}."%> 
             </li>
             <% end %> 
 
 </ol>
+
+<% if !@event.complete %>  
+    <%= button_to "Mark this event as complete", complete_event_path(@event), method: "patch" %>
+<% end %>
 
 <h2>+Add a new expense </h1>
 
@@ -35,3 +39,11 @@
     <%= f.submit "Submit expense" %>
 
 <% end %>
+
+<ul>
+    <% @event.debts.each do |debt| %>
+        <li>
+            <%= debt.to_s %> 
+        </li>
+    <% end %> 
+</ul>

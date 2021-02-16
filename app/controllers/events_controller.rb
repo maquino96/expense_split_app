@@ -8,7 +8,6 @@ class EventsController < ApplicationController
          @event = Event.find(params[:id])
          @expense = Expense.new 
          @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event).id
-        #  byebug 
          flash[:attendees] = @event.attendances 
      end
  
@@ -22,6 +21,7 @@ class EventsController < ApplicationController
  
      def create
          @event = Event.create(event_params)
+         Attendance.create(event: @event, user_id: session[:user_id])
          if @event.valid?
              redirect_to event_path(@event)
          else
@@ -49,6 +49,12 @@ class EventsController < ApplicationController
          @event = Event.find(params[:id])
          @event.destroy
          redirect_to events_path
+     end
+
+     def complete
+        @event = Event.find(params[:id])
+        @event.finish
+        redirect_back fallback_location: events_path
      end
  
      private
