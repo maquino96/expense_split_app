@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    # skip_before_action :authorized, only: [:login, :handle_login, :new, :create]
+    skip_before_action :authorized, only: [:login, :handle_login, :new, :create]
 
     def login
     end
@@ -41,6 +41,7 @@ class UsersController < ApplicationController
      end
  
      def create
+        
          @user = User.create(user_params)
          if @user.valid?
              redirect_to user_path(@user)

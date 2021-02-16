@@ -7,7 +7,11 @@ class EventsController < ApplicationController
      def show
          @event = Event.find(params[:id])
          @expense = Expense.new 
-         @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event).id
+         if @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event)
+            @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event).id 
+         else 
+            @attendance_id = Attendance.create(user_id: session[:user_id], event: @event).id
+         end 
          flash[:attendees] = @event.attendances 
      end
  
