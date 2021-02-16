@@ -23,4 +23,16 @@
 
 </ol>
 
-<p><%=link_to('+Add a new expense', new_expense_path)%></p>
+<h2>+Add a new expense </h1>
+
+<%= form_for @expense do |f| %>
+    
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description %>
+    <%= f.label :cost %>
+    <%= f.number_field :cost %>
+    <%= f.hidden_field :attendance_id, value: @attendance_id %>
+    <%= f.submit "Submit expense" %>
+
+<% end %>
+

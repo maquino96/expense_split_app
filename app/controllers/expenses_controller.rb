@@ -8,10 +8,7 @@ class ExpensesController < ApplicationController
         # byebug
         if flash[:attendees]
             @arr_of_objs = []
-            emptyObj = {
-                        :id => nil,
-                        :name => nil
-                        }
+
             # byebug 
             flash[:attendees].each {|attendance|
 
@@ -26,8 +23,7 @@ class ExpensesController < ApplicationController
             @arr_of_objs << emptyObj
             } 
            
-            #  can't figure out how to create an expense form using collection_select
-            ### <%= f.collection_select :attendance_id, @arr_of_objs, :id, :name %>  
+            #  can't figure out how to create an expense form using collection_select 
             @expense =Expense.new
         
         else 
