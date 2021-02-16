@@ -13,9 +13,20 @@ class Event < ApplicationRecord
         users_inst_arr
     end 
 
+
     def finish
         self.update(complete: true)
         debt_collector
+        #is this where i should call the Debt.consolidate method ??
+        Debt.consolidate
+        self.complete   #return value
+    end
+
+    def unfinish
+        self.update(complete: false)
+        debt_destroyer
+        # will there be some way to unconsolidate if i try to un-do finish??
+        self.complete   #return value
     end
 
     def debt_collector
@@ -51,6 +62,14 @@ class Event < ApplicationRecord
         end
         #should i return an array of all the debts i just made ? can take it out later if need be but it seems a nice and intuitive thing to return from this method
         debts
+    end
+
+    def debt_destroyer
+        Debt.all.each do |debt|
+            if debt.event == self
+                debt.destroy
+            end
+        end
     end
 
 end
