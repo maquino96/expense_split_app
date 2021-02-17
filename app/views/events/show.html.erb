@@ -24,7 +24,7 @@
 <ol>
         <% @event.expenses.each do |expense| %>
             <li>
-                <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: $#{expense.cost}."%> 
+                <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> 
             </li>
             <% end %> 
 

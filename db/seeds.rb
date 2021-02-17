@@ -41,7 +41,7 @@ paul = User.create(name: "Paul")
 george = User.create(name: "George")
 ringo = User.create(name: "Ringo")
 
-yellowsubmarine = Event.create(name: "Yellow Submarine")
+yellowsubmarine = Event.create(name: "Yellow Submarine", date: Date.parse('1967-08-20'))
 
 ysjohn = Attendance.create(user: john, event: yellowsubmarine)
 yspaul = Attendance.create(user: paul, event: yellowsubmarine)

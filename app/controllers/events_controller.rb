@@ -5,12 +5,17 @@ class EventsController < ApplicationController
      end
  
      def show
-         @event = Event.find(params[:id])
+         if Event.find_by(id: params[:id])
+            @event = Event.find(params[:id])
+         else
+            redirect_to user_path(session[:user_id])
+            return 
+         end
          @expense = Expense.new 
-         if @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event)
+         if Attendance.find_by(user_id: session[:user_id], event: @event)
             @attendance_id = Attendance.find_by(user_id: session[:user_id], event: @event).id 
          else 
-            @attendance_id = Attendance.create(user_id: session[:user_id], event: @event).id
+            redirect_to user_path(session[:user_id])
          end 
          flash[:attendees] = @event.attendances 
      end
@@ -70,10 +75,9 @@ class EventsController < ApplicationController
      def join
         if flash[:user]
             @user = User.find_by(name: params[:name])
-            @events = @user.events.select {|events| events.complete == false} 
+            @events = @user.events.select {|event| event.complete == false && !User.find(session[:user_id]).events.include?(event)} 
             @attendance = Attendance.new 
         end 
-    
      end 
 
      

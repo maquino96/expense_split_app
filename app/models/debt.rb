@@ -4,18 +4,6 @@ class Debt < ApplicationRecord
   belongs_to :debtor, class_name: "User", foreign_key: "debtor_id"
   belongs_to :creditor, class_name: "User", foreign_key: "creditor_id"
 
-  # def to_s
-  #   "#{self.debtor.name} owes #{self.creditor.name} $#{self.amount.round(2)}."
-  # end
-
-  # def to_you_owe_s
-  #   "You owe #{self.creditor.name} $#{self.amount.round(2).to_s.reverse.gsub(/(\d+\.)?(\d{3})(?=\d)/, '\\1\\2,').reverse}."
-  # end
-
-  # def to_owes_you_s
-  #   "#{self.debtor.name} owes you $#{self.amount.round(2).to_s.reverse.gsub(/(\d+\.)?(\d{3})(?=\d)/, '\\1\\2,').reverse}."
-  # end
-   
 
   #this method should condense one-way debts involving the same two people
   #should this get called... when? Every time a new event is finished?

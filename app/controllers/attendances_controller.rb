@@ -1,9 +1,9 @@
 class AttendancesController < ApplicationController
 
     def create
-        @attendance = Attendance.create(attendance_params)
+        @attendance = Attendance.new(attendance_params)
         # byebug
-        if @attendance.valid?
+        if @attendance.save
             redirect_to user_path(session[:user_id])
         else
             flash[:errors] = @attendance.errors.full_messages 

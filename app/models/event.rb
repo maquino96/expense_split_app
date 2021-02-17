@@ -52,7 +52,7 @@ class Event < ApplicationRecord
         debts = []
         in_the_black.each do |creditor_person, amount|
             #for each *positive* disparity (somebody owes them), start a while loop until the disparity is 0, and each time create a Debt instance with the positive disparity, a portion of their disparity, a negative disparity, and a portion of their negative
-            while in_the_black[creditor_person] != 0 
+            while in_the_black[creditor_person] > 0.0001 
                 debtor_person = in_the_red.find{|attendee, amount| amount!=0}[0]
                 amt = [ in_the_black[creditor_person], in_the_red[debtor_person] ].min  #between the two values, the amt the pos person is owed and the amt the neg person owes, finds the smaller of the two
                 debts << Debt.create(event: self, creditor: creditor_person, debtor: debtor_person, amount: amt)

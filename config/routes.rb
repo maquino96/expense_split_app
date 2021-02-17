@@ -12,12 +12,15 @@ Rails.application.routes.draw do
   patch "/events/:id/complete", to: "events#complete", as: "complete_event"
   patch "/events/:id/undo_complete", to: "events#undo_complete", as: "undo_complete_event"
 
-
+  get "/user", to: "users#show", as: "user"
 
   resources :expenses
   resources :attendances
   resources :events
   resources :users
+
+  # get "/users/:id"
+  
 
   
 
