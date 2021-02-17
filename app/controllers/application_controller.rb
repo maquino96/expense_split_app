@@ -31,14 +31,4 @@ class ApplicationController < ActionController::Base
             session[:user_id] = nil
         end
     
-    
-    
-    
-    
-    
-    
-    
-        def first
-            @variable = "Chicken " * 5
-        end
 end

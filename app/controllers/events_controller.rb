@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-    def index
+     def index
         @events = Event.all
      end
  
@@ -60,6 +60,23 @@ class EventsController < ApplicationController
         @event.finish
         redirect_back fallback_location: events_path
      end
+
+     def undo_complete
+        @event = Event.find(params[:id])
+        @event.unfinish
+        redirect_back fallback_location: events_path
+     end 
+
+     def join
+        if flash[:user]
+            @user = User.find_by(name: params[:name])
+            @events = @user.events.select {|events| events.complete == false} 
+            @attendance = Attendance.new 
+        end 
+    
+     end 
+
+     
  
      private
  

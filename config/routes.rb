@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   post "/handle_login", to: "users#handle_login"
   delete "/logout", to: "users#logout", as: "logout"
 
+  get "/join/", to: "events#join", as: "join"
+  post "/handle_join", to: "events#join"
+
   patch "/events/:id/complete", to: "events#complete", as: "complete_event"
+  patch "/events/:id/undo_complete", to: "events#undo_complete", as: "undo_complete_event"
+
+
 
   resources :expenses
   resources :attendances

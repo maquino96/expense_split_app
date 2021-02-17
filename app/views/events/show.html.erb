@@ -1,5 +1,8 @@
 <h1> Expense Split App: <%= @event.name %>  </h1> 
 
+
+<h2> Logged in as: <%= User.find(session[:user_id]).name%></h2>
+
 <h2> Attendees: </h2>
 
 <ul>
@@ -25,20 +28,27 @@
 
 <% if !@event.complete %>  
     <%= button_to "Mark this event as complete", complete_event_path(@event), method: "patch" %>
-<% end %>
 
-<h2>+Add a new expense </h1>
+    <h2>+Add a new expense </h1>
 
-<%= form_for @expense do |f| %>
+    <%= form_for @expense do |f| %>
+        
+        <%= f.label :description, "Description" %>
+        <%= f.text_field :description %>
+        <%= f.label :cost %>
+        <%= f.number_field :cost %>
+        <%= f.hidden_field :attendance_id, value: @attendance_id %>
+        <%= f.submit "Submit expense" %>
     
-    <%= f.label :description, "Description" %>
-    <%= f.text_field :description %>
-    <%= f.label :cost %>
-    <%= f.number_field :cost %>
-    <%= f.hidden_field :attendance_id, value: @attendance_id %>
-    <%= f.submit "Submit expense" %>
+    <% end %>
+
+<% else  %>
+    <%= button_to "Add more expenses", undo_complete_event_path(@event), method: "patch" %>
+
 
 <% end %>
+
+<h2> Debts: </h2>
 
 <ul>
     <% @event.debts.each do |debt| %>
