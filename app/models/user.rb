@@ -57,7 +57,7 @@ class User < ApplicationRecord
         end
     end
 
-    def owe_is_me
+    def owe_is_me       #it's a pun ("woe is me")
         #reverse reverse
         @my_debts.each do |my_creditor, debt|
             @rightful_dues.each do |my_debtor, credit|
@@ -79,8 +79,8 @@ class User < ApplicationRecord
         end
     end
 
-    # #this method should settle any "cirlce debts" (e.g. if three people each owe the person to their left $5, nobody owes anything)
-    # ### if done correctly, this might be able to replace the Debt.owe_is_me method, because that is looking for 2-cycles, and this is looking for N-cycles
+    # #this method should settle any "cycle debts" (e.g. if three people each owe the person to their left $5, nobody owes anything)
+    # ### if done correctly, this might be able to replace the user#owe_is_me method, because that is looking for 2-cycles, and this is looking for N-cycles
     # ### i.e. it's just more generalized.
     # def self.handle_circle_debts_or_something
     #   #this logic will be hard

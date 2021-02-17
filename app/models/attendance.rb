@@ -12,8 +12,4 @@ class Attendance < ApplicationRecord
     end 
   end 
 
-  # def expenses
-  #   Expense.all.select{ |expense| expense.attendance_id == id}
-  # end 
-
 end

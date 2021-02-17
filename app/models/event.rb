@@ -8,25 +8,22 @@ class Event < ApplicationRecord
 
     validates :date, presence: true
 
-    def attendee_user_insts
-        user_id_arr = self.attendances.pluck(:user_id).uniq
-        users_inst_arr = []
-        user_id_arr.each { |id| users_inst_arr << User.find(id) }
-        users_inst_arr
-    end 
-
+    # def attendee_user_insts
+    #     user_id_arr = self.attendances.pluck(:user_id).uniq
+    #     users_inst_arr = []
+    #     user_id_arr.each { |id| users_inst_arr << User.find(id) }
+    #     users_inst_arr
+    # end 
 
     def finish
         self.update(complete: true)
         debt_collector
-        # Debt.consolidate
         self.complete   #return value
     end
 
     def unfinish
         self.update(complete: false)
         debt_destroyer
-        # Debt.consolidate
         self.complete   #return value
     end
 
@@ -42,8 +39,7 @@ class Event < ApplicationRecord
                 in_the_red[attendance.user] = -disparity
             elsif disparity > 0
                 in_the_black[attendance.user] = disparity
-            end
-            #zeroes go nowhere... they are all paid up! ## <-- this should be tested in examples
+            end  #zeroes go nowhere... they are all paid up! ## <-- this should be tested in examples
         end
 
         debts = []
@@ -57,20 +53,12 @@ class Event < ApplicationRecord
                 in_the_red[debtor_person] = in_the_red[debtor_person] - amt
             end
         end 
-
-        if in_the_black.any?{|k,v| v!=0} || in_the_red.any?{|k,v| v!=0}     #in order to make it out of the loop above, *all* disparities should be down to zero, or something isn't balanced right. 
-            puts "excuse me hi yes there was a problem :)" #error !
-        end
-        #should i return an array of all the debts i just made ? can take it out later if need be but it seems a nice and intuitive thing to return from this method
+        
         debts
     end
 
     def debt_destroyer
-        Debt.all.each do |debt|
-            if debt.event == self
-                debt.destroy
-            end
-        end
+        self.debts.each{|debt| debt.destroy}
     end
 
 end
