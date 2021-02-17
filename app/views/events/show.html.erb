@@ -6,13 +6,16 @@
 <h2> Attendees: </h2>
 
 <ul>
-    <% @event.attendee_user_insts.each do |user| %>
+    <% @event.attendances.each do |attendance| %>
         <li>
         <!-- ## Can set an if statement here so that only a session / cookie with the corresponding user can be linked to, for now all are link_to-->
-        <% if user.id == session[:user_id]%>
-                <%= link_to(user.name, user_path(user))%> 
+        <% if attendance.user_id == session[:user_id]%>
+            <%= link_to(attendance.user.name, user_path(attendance.user))%> 
+            <% if @event.attendances.count > 1 %>
+                <%= button_to "Remove yourself from event", attendance_path(attendance), method: "delete" %>
+            <% end %>
         <%else%> 
-            <%= user.name %>
+            <%= attendance.user.name %>
         <%end%> 
         </li>
     <% end %> 
@@ -25,6 +28,9 @@
         <% @event.expenses.each do |expense| %>
             <li>
                 <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> 
+                <% if expense.attendance.user.id == session[:user_id] %>
+                    <%= button_to "Delete this expense", expense_path(expense), method: "delete" %>
+                <% end %>
             </li>
             <% end %> 
 

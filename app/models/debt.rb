@@ -5,13 +5,9 @@ class Debt < ApplicationRecord
   belongs_to :creditor, class_name: "User", foreign_key: "creditor_id"
 
 
-  #this method should condense one-way debts involving the same two people
-  #should this get called... when? Every time a new event is finished?
-  def self.consolidate     # needs to be a class method ? i think so
+  def self.consolidate 
     consolidation_ev = Event.find_by(name: "Consolidation")
-    #look through all the debts
     Debt.all.each do |this_debt|
-        ### for *each* debt instance, see if there are any with the same exact debtor and creditor, and if so add them all together, into a new Debt, and delete all old ones.
         if this_debt.event != consolidation_ev
           amount = this_debt.amount
           Debt.all.each do |that_debt|
@@ -24,10 +20,10 @@ class Debt < ApplicationRecord
         end
     end
     ## call reverse_dupli_method before we're done
-    Debt.reversy_thingy # (the method below, without a good name)
+    Debt.two_way_consolidate # (the method below, without a good name)
   end
   #
-  def self.reversy_thingy   #should only get called after the previous method, never from the beyond (maybe i should make it private). Functionality depends on one-way duplicates already being condensed
+  def self.two_way_consolidate   #should only get called after the previous method, never from the beyond (maybe i should make it private). Functionality depends on one-way duplicates already being condensed
     consolidation_ev = Event.find_by(name: "Consolidation")
     #look through all the CONSOLIDATION debts
     Debt.all.each do |this_debt|

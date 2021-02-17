@@ -1,13 +1,13 @@
 class Event < ApplicationRecord
 
-    has_many :attendances 
+    has_many :attendances, dependent: :destroy 
     has_many :users, through: :attendances
 
     has_many :expenses, through: :attendances
-    has_many :debts
+    has_many :debts, dependent: :destroy 
 
     validates :date, presence: true
-    validate :no_consolidate_name
+    # validate :no_consolidate_name
     
 
     def attendee_user_insts
@@ -21,7 +21,6 @@ class Event < ApplicationRecord
     def finish
         self.update(complete: true)
         debt_collector
-        #is this where i should call the Debt.consolidate method ??
         Debt.consolidate
         self.complete   #return value
     end
@@ -29,7 +28,7 @@ class Event < ApplicationRecord
     def unfinish
         self.update(complete: false)
         debt_destroyer
-        # will there be some way to unconsolidate if i try to un-do finish??
+        Debt.consolidate
         self.complete   #return value
     end
 

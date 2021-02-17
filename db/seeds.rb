@@ -60,10 +60,6 @@ Expense.create(attendance: ysgeorge, description: "i", cost: 13)
 
 puts '##### ZAK SEED COMPELTED #####'
 
-universe = Event.create(name: "Consolidation")
-# User.each do |user|
-#     Attendance.create(user: user, event: universe)
-# end
-
+universe = Event.create(name: "Consolidation", date: Date.parse('1900-01-01'))
 
 puts '##### ALL SEED COMPELTED #####'

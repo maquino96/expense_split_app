@@ -43,6 +43,12 @@ class ExpensesController < ApplicationController
         end
     end
 
+    def destroy 
+        @expense = Expense.find(params[:id])
+        @expense.destroy
+        redirect_back fallback_location: "/user"
+    end
+
     private
  
     def expense_params
