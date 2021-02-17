@@ -1,5 +1,7 @@
 <h1> Add New Event</h1>
 
+<%= render "/shared/errors" %>
+
 <%= form_for @event do |f| %>
     
     <%= f.label :name, "Event name:" %>
@@ -9,3 +11,5 @@
     <%= f.submit "Submit event" %>
 
 <% end %>
+
+<p> <%= link_to "Back to #{User.find(session[:user_id]).name}'s page", user_path(session[:user_id])%> </p>

@@ -6,6 +6,8 @@
 
 <h2> Please see the below for your previously attended events: </h2>
 
+<%= render "/shared/errors" %>
+
 <ol> 
     <%@user.events.each do |event| %>
         <li>

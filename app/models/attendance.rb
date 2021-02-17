@@ -8,7 +8,7 @@ class Attendance < ApplicationRecord
 
   def unique_attendee
     if Attendance.find_by(user_id: self.user_id, event_id: self.event_id)
-      self.errors.add(:user_id, 'User already connected to this event' )
+      self.errors.add(:user_id, 'has already connected to this event' )
     end 
   end 
 

@@ -25,12 +25,12 @@ class EventsController < ApplicationController
  
      def create
          @event = Event.create(event_params)
-         Attendance.create(event: @event, user_id: session[:user_id])
          if @event.valid?
+             Attendance.create(event: @event, user_id: session[:user_id])
              redirect_to event_path(@event)
          else
              flash[:errors] = @event.errors.full_messages
-             flash[:attributes] = @event.attributes
+            #  flash[:attributes] = @event.attributes
              redirect_to new_event_path
          end
      end

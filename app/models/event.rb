@@ -6,6 +6,10 @@ class Event < ApplicationRecord
     has_many :expenses, through: :attendances
     has_many :debts
 
+    validates :date, presence: true
+    validate :no_consolidate_name
+    
+
     def attendee_user_insts
         user_id_arr = self.attendances.pluck(:user_id).uniq
         users_inst_arr = []
@@ -71,6 +75,12 @@ class Event < ApplicationRecord
             end
         end
     end
+
+    def no_consolidate_name
+        if self.name && self.name.downcase.include?("consolidate")
+            self.errors.add(:name, "is currently in use please pick a different one")
+        end 
+    end 
 
 end
 
