@@ -24,16 +24,16 @@
 <h2> Here are your outstanding debts! </h2>
 
 <ul> 
-    <% @user.what_do_i_owe.each do |debt| %>
+    <% @user.what_do_i_owe.each do |creditor,debt| %>
         <li>
-            <%= "You owe #{debt.creditor.name} #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %>
+            <%= "You owe #{creditor.name} #{number_to_currency(debt,{precision: 2,unit: '$'})}" %>
         </li>
     <% end %>
 </ul>
 <ul> 
-    <% @user.what_is_owed_to_me.each do |debt| %>
+    <% @user.what_is_owed_to_me.each do |debtor,credit| %>
         <li>
-            <%= "#{debt.debtor.name} owes you #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %>
+            <%= "#{debtor.name} owes you #{number_to_currency(credit,{precision: 2,unit: '$'})}" %>
         </li>
     <% end %>
 </ul>

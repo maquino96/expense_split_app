@@ -21,14 +21,14 @@ class Event < ApplicationRecord
     def finish
         self.update(complete: true)
         debt_collector
-        Debt.consolidate
+        # Debt.consolidate
         self.complete   #return value
     end
 
     def unfinish
         self.update(complete: false)
         debt_destroyer
-        Debt.consolidate
+        # Debt.consolidate
         self.complete   #return value
     end
 
