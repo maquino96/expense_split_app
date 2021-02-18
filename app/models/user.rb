@@ -8,7 +8,7 @@ class User < ApplicationRecord
     has_many :debtor_relationships, class_name: "Debt", foreign_key: :creditor_id, dependent: :destroy
 
 
-    #they return a hash now
+    # they return a hash now
     def what_do_i_owe
         calculate
         @my_debts
@@ -19,7 +19,7 @@ class User < ApplicationRecord
         @rightful_dues
     end
 
-    private
+    # private
 
     def calculate
         @my_debts = {}
@@ -31,10 +31,10 @@ class User < ApplicationRecord
 
     def calculate_debts
         Debt.all.each do |this_debt|
-            if this_debt.debtor == self
+            if this_debt.debtor == self && !@my_debts[this_debt.creditor]
                 amount = this_debt.amount
                 Debt.all.each do |that_debt|
-                    if this_debt!=that_debt && this_debt.debtor == that_debt.debtor && this_debt.creditor == that_debt.creditor && !@my_debts[this_debt.creditor]
+                    if this_debt!=that_debt && this_debt.debtor == that_debt.debtor && this_debt.creditor == that_debt.creditor 
                         amount += that_debt.amount
                     end
                 end
@@ -45,10 +45,10 @@ class User < ApplicationRecord
     
     def calculate_dues
         Debt.all.each do |this_debt|
-            if this_debt.creditor == self
+            if this_debt.creditor == self && !@rightful_dues[this_debt.creditor]
                 amount = this_debt.amount
                 Debt.all.each do |that_debt|
-                    if this_debt!=that_debt && this_debt.debtor == that_debt.debtor && this_debt.creditor == that_debt.creditor && !@rightful_dues[this_debt.creditor]
+                    if this_debt!=that_debt && this_debt.debtor == that_debt.debtor && this_debt.creditor == that_debt.creditor
                         amount += that_debt.amount
                     end
                 end
@@ -87,5 +87,37 @@ class User < ApplicationRecord
     #   ### might involve graph theory??? Looking for circuits and cycles in a debt network ??
     # end
 
+
+
+
+    # def what_do_i_owe
+    #     my_debts = {} 
+    #     debts = Debt.select{|debt| debt.debtor == self} 
+    #     dues = Debt.select{|debt| debt.creditor == self}
+    #     byebug
+    #     debts.each do |this_debt|
+    #         if !my_debts[this_debt.creditor]
+    #             amount = this_debt.amount
+    #             debts.each do |that_debt|
+    #                 if this_debt != that_debt && this_debt.creditor == that_debt.creditor
+    #                     amount += that_debt.amount
+    #                     byebug
+    #                 end
+    #             end
+    #             my_debts[this_debt.creditor] = amount
+    #         end
+    #     end
+    #     byebug
+    #     my_debts.each do |creditor, amt|
+    #         dues.each do |due|
+    #             if creditor == due.debtor
+    #                 amt -= due.amount
+    #             end
+    #         end
+    #         my_debts[creditor] = amt
+    #     end
+    #     byebug
+    #     my_debts
+    # end
     
 end

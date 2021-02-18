@@ -69,4 +69,10 @@ attended10 = Attendance.create(user: paul, event: event4)
 attended11 = Attendance.create(user: jack, event: event4)
 Expense.create(attendance: attended8, description: "apps", cost: 200)
 
+event5 = Event.create(name: "Just Hangin", date: Date.parse('2020-03-15'))
+attended12 = Attendance.create(user: matt, event: event5)
+attended13 = Attendance.create(user: jack, event: event5)
+Expense.create(attendance: attended12, description: "sushi!!!", cost: 18)
+
+
 puts '##### ALL SEED COMPELTED #####'

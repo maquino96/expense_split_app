@@ -15,7 +15,7 @@
         <li>
             <%=link_to(event.name,event_path(event))%>
             <% if event.attendances.first.user.id == session[:user_id] %>
-                    <%= button_to "Delete this event", event_path(event), method: "delete" %>
+                 <%= button_to "Delete this event", event_path(event), method: "delete" %>
             <% end %>
         </li>
     <% end %>
