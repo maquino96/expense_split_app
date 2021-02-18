@@ -82,7 +82,7 @@ class User < ApplicationRecord
     # #this method should settle any "cycle debts" (e.g. if three people each owe the person to their left $5, nobody owes anything)
     # ### if done correctly, this might be able to replace the user#owe_is_me method, because that is looking for 2-cycles, and this is looking for N-cycles
     # ### i.e. it's just more generalized.
-    # def self.handle_circle_debts_or_something
+    # def self.handle_cycle_debts_or_something
     #   #this logic will be hard
     #   ### might involve graph theory??? Looking for circuits and cycles in a debt network ??
     # end

@@ -4,7 +4,9 @@
 
 <p> <%= button_to "Logout", logout_path, method: "delete" %> </p>
 
-<h2> Please see the below for your previously attended events: </h2>
+<% unless @user.attendances.empty? %>
+    <h2> Please see the below for your previously attended events: </h2>
+<% end %>
 
 <%= render "/shared/errors" %>
 
@@ -21,7 +23,9 @@
 
 <h3><%= link_to('Create New Event', new_event_path) %> -- <%= link_to('Join Exisitng Event', join_path) %></h3>
 
-<h2> Here are your outstanding debts! </h2>
+<% unless ( @user.what_do_i_owe.empty? && @user.what_is_owed_to_me.empty?) %>
+    <h2> Here are your outstanding debts! </h2>
+<% end %>
 
 <ul> 
     <% @user.what_do_i_owe.each do |creditor,debt| %>

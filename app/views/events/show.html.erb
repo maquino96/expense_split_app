@@ -22,18 +22,18 @@
 
 </ul>
 
-<h2> Expenses: </h2>
-
+<% unless @event.expenses.empty? %>
+    <h2> Expenses: </h2>
+<% end %>
 <ol>
-        <% @event.expenses.each do |expense| %>
-            <li>
-                <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> 
-                <% if expense.attendance.user.id == session[:user_id] %>
-                    <%= button_to "Delete this expense", expense_path(expense), method: "delete" %>
-                <% end %>
-            </li>
-            <% end %> 
-
+    <% @event.expenses.each do |expense| %>
+        <li>
+            <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> 
+            <% if expense.attendance.user.id == session[:user_id] %>
+                <%= button_to "Delete this expense", expense_path(expense), method: "delete" %>
+            <% end %>
+        </li>
+    <% end %> 
 </ol>
 
 <% if !@event.complete %>  
@@ -51,14 +51,13 @@
         <%= f.submit "Submit expense" %>
     
     <% end %>
-
 <% else  %>
     <%= button_to "Add more expenses", undo_complete_event_path(@event), method: "patch" %>
-
-
 <% end %>
 
-<h2> Debts: </h2>
+<% unless @event.debts.empty? %>
+    <h2> Debts: </h2>
+<% end %>
 
 <ul>
     <% @event.debts.each do |debt| %>
