@@ -13,3 +13,80 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+    background: #1A2980;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom right, #1A2980, #26D0CE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom right, #1A2980,#26D0CE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    height: 125%;
+}
+
+body { 
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 85%;
+    /* border: 3px solid green;  */
+    padding: 25px;
+    
+}
+
+h2, li {
+    /* align-items: flex-start; */
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+}
+
+
+
+h3 { 
+    margin-top: 25px;
+    text-align: center}
+
+
+li{
+    display: flex;
+    align-items:flex-end;
+    justify-content: space-evenly;
+    flex-direction:row;
+
+}
+
+.button.is-danger {
+    margin-left: 10px;
+    
+}
+
+.button.is-primary {
+    flex-grow: 2;
+}
+
+.title.is-1 {
+    text-align: center;
+    color: white;
+}
+
+.label {
+    margin-top: 10rem;
+    color: white;
+    text-align: center;
+}
+
+.login_form {    
+    margin-bottom: 10px; 
+    margin-top: 10px;
+    text-align: center;
+}
+
+p.text_field{
+    margin-bottom: 10px;
+}
+
+p.cost {
+    margin-bottom: 10px;
+}

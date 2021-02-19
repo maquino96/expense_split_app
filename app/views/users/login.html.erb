@@ -1,11 +1,11 @@
-<h1> Welcome to Expense Split App </h1>
+<h1 class='title is-1'> Expense Split App</h1>
 
 <%= render "/shared/errors" %>
 
-<%= form_tag "/handle_login" do %>
-    <%= label_tag :login_username %>
-    <%= text_field_tag :login_username %>
-    <%= submit_tag "Login" %>
+<%= form_tag "/handle_login", {:class => 'login_form'} do %>
+    <%= label_tag :username, nil, class:'label' %>
+    <p class='text_field'> <%= text_field_tag :login_username, "", class:'input is-mediumd is-rounded level-item', placeholder:'Type username here' %> </p>
+    <%= submit_tag "Login", class:"mgb-small button is-primary is-inverted is-outlined is-rounded is-fullwidth is-centered" %>
 <% end %>
 
-<p> <%= button_to "Create new account", new_user_path, method: "get" %> </p>
+<%= button_to "Create new account", new_user_path, method: "get", class:"button is-primary is-inverted is-outlined is-rounded is-fullwidth is-centered" %> 
