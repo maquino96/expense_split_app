@@ -1,4 +1,4 @@
-<h2 class='title is-1'> Expense Split App</h2>
+<h1 class='title is-1'> Expense Split App</h1>
 
 <h2> Welcome <%=@user.name%> <h2>
 
@@ -19,7 +19,7 @@
 </ol>
 
 
-<h3><%= link_to('Create New Event', new_event_path, class: 'button is-primary is-rounded') %> <%= link_to('Join Exisitng Event', join_path, class: 'button is-primary is-rounded') %></h3>
+<h3><%= link_to('Create New Event', new_event_path, class: 'button is-primary is-rounded') %> <%= link_to('Join Existing Event', join_path, class: 'button is-primary is-rounded') %></h3>
 
 
 
@@ -40,4 +40,4 @@
     <% end %>
 </ul>
 
-<%= button_to "Logout", logout_path, method: "delete", class: "button is-primary is-inverted is-outlined is-rounded" %> 
+<%= button_to "Logout", logout_path, method: "delete", class: "button is-primary is-inverted is-outlined is-rounded is-fullwidth"%> 

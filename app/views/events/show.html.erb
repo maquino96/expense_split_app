@@ -1,18 +1,18 @@
-<h1> Expense Split App: <%= @event.name %>  </h1> 
+<h1 class='title is-1'> Expense Split App: <%= @event.name %>  </h1> 
 
 
-<h2> Logged in as: <%= User.find(session[:user_id]).name%></h2>
+<h2 class='title is-4 has-text-white'> Logged in as: <%= User.find(session[:user_id]).name%></h2>
 
-<h2> Attendees: </h2>
+<h2 class='title is-4 has-text-white'> Attendees: </h2>
 
 <ul>
     <% @event.attendances.each do |attendance| %>
-        <li>
+        <li class='subtitle is-4 has-text-white'>
         <!-- ## Can set an if statement here so that only a session / cookie with the corresponding user can be linked to, for now all are link_to-->
         <% if attendance.user_id == session[:user_id]%>
             <%= link_to(attendance.user.name, user_path(attendance.user))%> 
             <% if @event.attendances.count > 1 %>
-                <%= button_to "Remove yourself from event", attendance_path(attendance), method: "delete" %>
+                <%= button_to "Leave Event", attendance_path(attendance), method: "delete", class: "button is-danger is-inverted is-outlined is-small" %>
             <% end %>
         <%else%> 
             <%= attendance.user.name %>
@@ -22,14 +22,14 @@
 
 </ul>
 
-<h2> Expenses: </h2>
+<h2 class= 'title is-4 has-text-white'> Expenses: </h2>
 
 <ol>
         <% @event.expenses.each do |expense| %>
-            <li>
-                <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> 
+            <li class='subtitle is-5 has-text-white'>
+                <p class='expense'> <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> </p>
                 <% if expense.attendance.user.id == session[:user_id] %>
-                    <%= button_to "Delete this expense", expense_path(expense), method: "delete" %>
+                    <%= button_to "Delete this expense", expense_path(expense), method: "delete", class: "button is-danger is-inverted is-outlined is-small" %>
                 <% end %>
             </li>
             <% end %> 
@@ -37,32 +37,32 @@
 </ol>
 
 <% if !@event.complete %>  
-    <%= button_to "Mark this event as complete", complete_event_path(@event), method: "patch" %>
+    <%= button_to "Mark this event as complete", complete_event_path(@event), method: "patch", class: 'button is-primary is-rounded is-fullwidth' %>
 
-    <h2>+Add a new expense </h1>
+    <h2 class='title is-4 has-text-white'>+Add a new expense </h1>
 
-    <%= form_for @expense do |f| %>
+    <%= form_for @expense, html: {class:'login_form'} do |f| %>
         
-        <%= f.label :description, "Description" %>
-        <%= f.text_field :description %>
-        <%= f.label :cost %>
-        <%= f.number_field :cost %>
+        <%= f.label :description, "Description", class:' is-size-4 has-text-white' %>
+        <%= f.text_field :description, class:'mgb-small input is-medium is-rounded level-item' %>
+        <p class='cost'> <%= f.label :cost, class:'mgb-small is-size-4 has-text-white' %> </p>
+        <%= f.number_field :cost, class:'mgb-small input is-medium is-rounded level-item' %>
         <%= f.hidden_field :attendance_id, value: @attendance_id %>
-        <%= f.submit "Submit expense" %>
+        <%= f.submit "Submit expense", class: 'button is-primary is-rounded' %>
     
     <% end %>
 
 <% else  %>
-    <%= button_to "Add more expenses", undo_complete_event_path(@event), method: "patch" %>
+    <%= button_to "Add more expenses", undo_complete_event_path(@event), method: "patch", class: 'button is-primary is-rounded is-fullwidth' %>
 
 
 <% end %>
 
-<h2> Debts: </h2>
+<h2 class='title is-4 has-text-white'> Debts: </h2>
 
 <ul>
     <% @event.debts.each do |debt| %>
-        <li>
+        <li class='subtitle is-4 has-text-white'>
             <%= "#{debt.debtor.name} owes #{debt.creditor.name} #{number_to_currency(debt.amount,{precision: 2,unit: '$'})}" %> 
         </li>
     <% end %> 
