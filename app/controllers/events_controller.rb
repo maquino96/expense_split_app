@@ -75,8 +75,14 @@ class EventsController < ApplicationController
      def join
         if flash[:user]
             @user = User.find_by(name: params[:name])
+
+            if @user && @user != User.find(session[:user_id])
             @events = @user.events.select {|event| event.complete == false && !User.find(session[:user_id]).events.include?(event)} 
-            @attendance = Attendance.new 
+            @attendance = Attendance.new
+            else 
+                flash[:errors] = ['User cannot be queried please try again']
+                redirect_back fallback_location: user_path(session[:user_id])
+            end 
         end 
      end 
 

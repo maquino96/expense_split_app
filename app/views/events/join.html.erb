@@ -1,5 +1,8 @@
 <h1 class='title is-1 has-white-text'> User Search </h1>
 
+
+<%= render "/shared/errors" %>
+
 <%= link_to "Back", user_path(session[:user_id]), class: 'button is-primary is-rounded'%>
 
 
@@ -7,7 +10,7 @@
 
     <%= form_for @attendance, {class:'login_form'} do |f| %>
         <%= f.label :event_id, class:'is-size-4 has-text-white'%>
-        <%= f.collection_select :event_id, @events, :id, :name, {:include_blank => false}, {class: "dropdown-content is-centered"} %>
+        <%= f.collection_select :event_id, @events, :id, :name, {:include_blank => false}, {class: "dropdown-content"} %>
         <%= f.hidden_field :user_id, value: session[:user_id] %>
         <%= f.submit "Submit", class: 'button is-primary is-rounded' %>
     <% end %> 

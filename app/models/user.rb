@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :creditor_relationships, class_name: "Debt", foreign_key: :debtor_id, dependent: :destroy 
     has_many :debtor_relationships, class_name: "Debt", foreign_key: :creditor_id, dependent: :destroy
 
+    validates :name, presence: true
 
     # they return a hash now
     def what_do_i_owe
