@@ -30,7 +30,7 @@
         <li class='subtitle is-5 has-text-white'>
         <p class='expense'> <%= "#{expense.attendance.user.name}: #{expense.description} -- Cost: #{number_to_currency(expense.cost,{precision: 2,unit: '$'})}."%> </p>
             <% if expense.attendance.user.id == session[:user_id] %>
-                <%= button_to "Delete this expense", expense_path(expense), method: "delete" class: "button is-danger is-inverted is-outlined is-small"%>
+                <%= button_to "Delete this expense", expense_path(expense), method: "delete", class: "button is-danger is-inverted is-outlined is-small"%>
             <% end %>
         </li>
     <% end %> 
