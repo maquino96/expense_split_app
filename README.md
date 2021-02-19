@@ -1,6 +1,6 @@
-# README
-#Expense Split App
-##by Matt Aquino and Zak Dagnall
+# README: Expense Split App
+
+### by Matt Aquino and Zak Dagnall
 
 This app is designed for Users to be able to log Expenses associated with a particular Event that they attended, with other people or alone, and then be able to split the total cost evenly among the participants of the Event. The app will then generate information on who owes who how much money, based on how much each person already contributed to the total cost (via paying for some Expenses) and how much each person's share should be. 
 
@@ -8,12 +8,12 @@ On each User's page, there is also visible a list of all outstanding Debts (if a
 
 This app also lets you create a login Username (case sensitive) if one does not exist in the system for you. You must be logged-in (no password) in order to view any pages besides the login.
 
-###This app makes use of Ruby on Rails, and has 5 models:
-    * User
-    * Event (which must have a non-nil date attribute)
-    * Attendance (a joiner between User and Event)
-    * Expense (which belongs to a particular attendance instance)
-    * Debt (which belongs to an Event, and two Users (the creditor and the Debtor))
+### This app makes use of Ruby on Rails, and has 5 models:
+* User
+* Event (which must have a non-nil date attribute)
+* Attendance (a joiner between User and Event)
+* Expense (which belongs to a particular attendance instance)
+* Debt (which belongs to an Event, and two Users (the creditor and the Debtor))
 
 ![Expense Split App ORM](/Expense_Split_App_ORM.png)
 
