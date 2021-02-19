@@ -7,6 +7,7 @@ class Event < ApplicationRecord
     has_many :debts, dependent: :destroy 
 
     validates :date, presence: true
+    validates :name, presence: true
 
     # def attendee_user_insts
     #     user_id_arr = self.attendances.pluck(:user_id).uniq

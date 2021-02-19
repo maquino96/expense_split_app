@@ -1,15 +1,15 @@
-<h1> Add New Event</h1>
+<h1 class='title is-1 has-white-text'> Add New Event</h1>
 
 <%= render "/shared/errors" %>
 
-<%= form_for @event do |f| %>
+<%= link_to "Back", user_path(session[:user_id]), class: 'mgb-medium button is-primary is-rounded'%>
+<%= form_for @event, {class:'login_form'} do |f| %>
     
-    <%= f.label :name, "Event name:" %>
-    <%= f.text_field :name %>
-    <%= f.label :date %>
-    <%= f.date_field :date %>
-    <%= f.submit "Submit event" %>
+    <%= f.label :name, "Event Name", class:' is-size-4 has-text-white' %>
+    <%= f.text_field :name, class:'mgb-small input is-medium is-rounded level-item' %>
+    <%= f.label :date, class:' is-size-4 has-text-white' %>
+    <%= f.date_field :date, class:'mgb-small input is-medium is-rounded level-item' %>
+    <%= f.submit "Submit Event", class: 'button is-primary is-rounded' %>
 
 <% end %>
 
-<p> <%= link_to "Back to #{User.find(session[:user_id]).name}'s page", user_path(session[:user_id])%> </p>

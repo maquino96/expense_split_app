@@ -1,11 +1,11 @@
-<h1> Expense Split App: Create New User</h1>
+<h1 class='title is-1'>Create New User</h1>
 
 <%= render "/shared/errors" %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, {class:'login_form'} do |f| %>
     
-    <%= f.label :name, "Please put name here" %>
-    <%= f.text_field :name %>
-    <%= f.submit "Submit" %>
+    <%= f.label :name, "Please put name here", class:'is-size-4 has-text-white' %>
+    <%= f.text_field :name, class:'mgb-small input is-medium is-rounded level-item', placeholder: "Input name here" %>
+    <%= f.submit "Submit", class: 'button is-primary is-rounded' %>
 
 <% end %>

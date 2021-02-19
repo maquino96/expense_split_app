@@ -1,10 +1,10 @@
 <h1 class='title is-1'> Expense Split App</h1>
 
-<h2> Welcome <%=@user.name%> <h2>
+<h2 class='title is-4 has-text-white'> Welcome <%=@user.name%> <h2>
 
 
 <% unless @user.attendances.empty? %>
-    <h2> Please see the below for your previously attended events: </h2>
+    <h2 class='title is-4 has-text-white'> Please see the below for your previously attended events: </h2>
 <% end %>
 
 <%= render "/shared/errors" %>
@@ -12,9 +12,9 @@
 <ol> 
     <%@user.events.each do |event| %>
         <li>
-            <%=link_to(event.name, event_path(event), class: "button is-primary is-inverted is-outlined is-small")%>
+            <%=link_to(event.name, event_path(event), class: "button is-primary is-inverted is-outlined is-medium")%>
             <% if event.attendances.first.user.id == session[:user_id] %>
-            <%= button_to "Delete Event", event_path(event), method: "delete", class: "button is-danger is-inverted is-outlined is-small"  %>
+            <%= button_to "Delete Event", event_path(event), method: "delete", class: "button is-danger is-inverted is-outlined is-medium"  %>
             <% end %>
         </li>
     <% end %>
@@ -26,19 +26,19 @@
 
 
 <% unless ( @user.what_do_i_owe.empty? && @user.what_is_owed_to_me.empty?) %>
-    <h2> Here are your outstanding debts! </h2>
+    <h2 class='title is-4 has-text-white'> Here are your outstanding debts! </h2>
 <% end %>
 
 <ul> 
     <% @user.what_do_i_owe.each do |creditor,debt| %>
-        <li>
+        <li class='title is-4 has-text-white'>
             <%= "You owe #{creditor.name} #{number_to_currency(debt,{precision: 2,unit: '$'})}" %>
         </li>
     <% end %>
 </ul>
 <ul> 
     <% @user.what_is_owed_to_me.each do |debtor,credit| %>
-        <li>
+        <li class='title is-4 has-text-white'>
             <%= "#{debtor.name} owes you #{number_to_currency(credit,{precision: 2,unit: '$'})}" %>
         </li>
     <% end %>
